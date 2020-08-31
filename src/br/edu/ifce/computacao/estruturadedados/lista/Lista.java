@@ -12,18 +12,18 @@ public class Lista<T> implements TADLista<T> {
 	
 	@Override
 	public void adicionaValor(T valor, int indice) {
-		//Realiza validacoes - verifica se tem espaço disponivel
+		//Realiza validacoes - verifica se tem espaï¿½o disponivel
 		if (listaCheia()) {
-			System.out.println("Lista Cheia. Elemento " + valor + " não adicionado.");
+			System.out.println("Lista Cheia. Elemento " + valor + " nï¿½o adicionado.");
 			return;
 		}
-		//Verifica se o indice é válido
+		//Verifica se o indice ï¿½ vï¿½lido
 		if (indice < 0 || indice > posicao + 1) {
-			System.out.println("Elemento não adicionado. Posicao " + indice + " inválida.");
+			System.out.println("Elemento nï¿½o adicionado. Posicao " + indice + " invï¿½lida.");
 			return;
 		}
 		
-		//Desloca os elementos posteriores ao indice uma posição a direita 
+		//Desloca os elementos posteriores ao indice uma posiï¿½ï¿½o a direita 
 		for (int i = posicao; i >= indice; i--) {
 			lista[i + 1] = lista[i];
 		}
@@ -31,14 +31,16 @@ public class Lista<T> implements TADLista<T> {
 		posicao++;
 	}
 
-	public T removeValor(int indice) {
-		// Realiza validações 
+
+
+	public T removePos(int indice) {
+		// Realiza validaï¿½ï¿½es 
 		if (listaVazia()) {
-			System.out.println("Lista vazia. Não há elementos para remoção");
+			System.out.println("Lista vazia. Nï¿½o hï¿½ elementos para remoï¿½ï¿½o");
 			return null;
 		}
 		if (indice < 0 || indice > posicao) {
-			System.out.println("Indice inválido. Elemento não removido.");
+			System.out.println("Indice invï¿½lido. Elemento nï¿½o removido.");
 			return null;
 		}
 		
@@ -53,18 +55,49 @@ public class Lista<T> implements TADLista<T> {
 		return valorRemovido;
 	}
 
-	public boolean listaCheia() {
-		if (posicao == lista.length - 1) {
-			return true;
+	@Override
+	public T set(int pos, T t) {
+		T t1 = removePos(pos);
+		adicionaValor(t, pos);
+		return t1;
+	}
+
+	@Override
+	public void addPrimeiro(T t) {
+		adicionaValor(t, 0);
+	}
+
+	@Override
+	public void addUltimo(T t) {
+		adicionaValor(t, posicao+1);
+	}
+
+	@Override
+	public void addAntes(int pos, T t) {
+		adicionaValor(t, pos - 1);
+	}
+
+	@Override
+	public void addDepois(int pos, T t) {
+		adicionaValor(t, pos + 1);
+	}
+
+	@Override
+	public void removeValor(T t) {
+		for(int i=0; i <= posicao; i++){
+			if(lista[i] == t){
+				removePos(i);
+				i--;
+			}
 		}
-		return false;
+	}
+
+	public boolean listaCheia() {
+		return posicao == lista.length - 1;
 	}
 
 	public boolean listaVazia() {
-		if (posicao == -1) {
-			return true;
-		}
-		return false;
+		return posicao == -1;
 	}
 
 	
@@ -75,6 +108,35 @@ public class Lista<T> implements TADLista<T> {
 		}
 		System.out.println();
 	
+	}
+
+	@Override
+	public T first() {
+		return lista[0];
+	}
+
+	@Override
+	public T last() {
+		return lista[posicao];
+	}
+
+	@Override
+	public T anterior(int pos) {
+		if (pos < 1 || pos > posicao) {
+			System.out.println("Indice invï¿½lido. Elemento nï¿½o retornado.");
+			return null;
+		}
+		return lista[pos-1];
+	}
+
+	@Override
+	public T posterior(int pos) {
+		if (pos < -1 || pos >= posicao) {
+			System.out.println("Indice invï¿½lido. Elemento nï¿½o retornado.");
+			return null;
+		}
+		return lista[pos+1];
+
 	}
 
 }

@@ -43,13 +43,13 @@ public class TesteLista {
 		lista.removeValor(4);
 		lista.imprimeLista();
 
-		lista.removeValor(1);
+		lista.removePos(1);
 		lista.imprimeLista();
 
-		lista.removeValor(0);
+		lista.removeValor(10);
 		lista.imprimeLista();
 
-		lista.removeValor(0);
+		lista.removeValor(12);
 		lista.imprimeLista();
 
 		lista.removeValor(0);
