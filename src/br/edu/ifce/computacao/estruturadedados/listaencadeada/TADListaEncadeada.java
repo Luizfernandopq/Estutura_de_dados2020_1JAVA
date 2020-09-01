@@ -1,5 +1,7 @@
 package br.edu.ifce.computacao.estruturadedados.listaencadeada;
 
+import java.util.List;
+
 /**
  * TAD (Tipo Abstrato de Dados) para representar a Lista Encadeada
  * 
@@ -23,5 +25,6 @@ public interface TADListaEncadeada<T> {
 	 */
 	public boolean listaVazia();
 	public void imprimeLista();
+	public void removeChar(Character c);
 	
 }

@@ -1,7 +1,5 @@
 package br.edu.ifce.computacao.estruturadedados.listaencadeada;
 
-import br.edu.ifce.computacao.estruturadedados.pilhaencadeada.No;
-
 public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 
 	private No<T> cabeca;
@@ -17,12 +15,10 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 	public void insereInicio(T valor) {
 		No<T> novoNo = new No<T>(valor, null);
 
-		if (cabeca == null) {
-			cabeca = novoNo;
-		} else {
+		if (cabeca != null) {
 			novoNo.setProximo(cabeca);
-			cabeca = novoNo;
 		}
+		cabeca = novoNo;
 		tamanho++;
 
 	}
@@ -30,7 +26,7 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 	@Override
 	public void inserePosicao(T valor, int posicao) {
 
-		//Verifica se a posição é válida
+		//Verifica se a posiï¿½ï¿½o ï¿½ vï¿½lida
 		if (posicao == 0) {
 			insereInicio(valor);
 			return;
@@ -38,7 +34,7 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 			insereFinal(valor);
 			return;
 		} else if (posicao < 0 || posicao > tamanho) {
-			System.out.println("Posição inválida " + posicao + " para inserção.");
+			System.out.println("Posiï¿½ï¿½o invï¿½lida " + posicao + " para inserï¿½ï¿½o.");
 			return;
 		}
 
@@ -73,15 +69,15 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 	@Override
 	public T removePosicao(int posicao) {
 
-		//Verifica se a posição é válida
+		//Verifica se a posiï¿½ï¿½o ï¿½ vï¿½lida
 		if (posicao < 0 || posicao >= tamanho) {
-			System.out.println("Nó não removido. Posição inválida para remoção");
+			System.out.println("Nï¿½ nï¿½o removido. Posiï¿½ï¿½o invï¿½lida para remoï¿½ï¿½o");
 			return null;
 		}
 
 		No<T> noAnteriorRemocao = cabeca;
 
-		//Encontra o nó anterior ao nó que será removido
+		//Encontra o nï¿½ anterior ao nï¿½ que serï¿½ removido
 		for(int i = 0; i < posicao - 1; i++) {
 			noAnteriorRemocao = noAnteriorRemocao.getProximo();
 		}
@@ -103,17 +99,14 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 
 	@Override
 	public boolean listaVazia() {
-		if (cabeca == null) {
-			return true;
-		}
-		return false;
+		return cabeca == null;
 	}
 
 	@Override
 	public void imprimeLista() {
-		//Realiza validações
+		//Realiza validaï¿½ï¿½es
 		if(listaVazia()) {
-			System.out.println("Lista Vazia. Não há elementos para impressão");
+			System.out.println("Lista Vazia. Nï¿½o hï¿½ elementos para impressï¿½o");
 			return;
 		}
 
@@ -138,6 +131,27 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 			aux = aux.getProximo();
 		}
 		return aux;
+
+	}
+
+	public void removeChar(Character c){
+		int posicao = 0;
+		No<T> aux = cabeca;
+		if (aux == null) {
+			return;
+		}
+		while (aux != null ){
+			if (aux.getValor().toString().contains(c.toString())){
+				removePosicao(posicao);
+				removeChar(c);
+				return;
+			}
+			else {
+				aux = aux.getProximo();
+				posicao++;
+			}
+		}
+		return;
 
 	}
 
