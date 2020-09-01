@@ -1,25 +1,52 @@
 package br.edu.ifce.computacao.estruturadedados.listaencadeada;
 
 public class TesteListaEncadeada {
-	
+
+
 	public static void main(String[] args) {
-		
-		TADListaEncadeada<String> listaEncadeada = new ListaEncadeada<String>();
-		
-		listaEncadeada.imprimeLista();
-		
-		listaEncadeada.insereInicio("Luiz");
-		listaEncadeada.imprimeLista();
-		
-		listaEncadeada.insereFinal("Klayver");
-		listaEncadeada.imprimeLista();
-		
-		listaEncadeada.inserePosicao("Walber", 1);
-		listaEncadeada.imprimeLista();
-		
-		listaEncadeada.inserePosicao("Migué", 2);
-		listaEncadeada.imprimeLista();
-		
+		/*
+		* Lista encadeada STRING
+		* */
+		TADListaEncadeada<String> listaEncadeadaStr = new ListaEncadeada<String>();
+
+		listaEncadeadaStr.imprimeLista();
+
+		listaEncadeadaStr.insereInicio("Luiz");
+		listaEncadeadaStr.imprimeLista();
+
+		listaEncadeadaStr.insereFinal("Klayver");
+		listaEncadeadaStr.imprimeLista();
+
+		listaEncadeadaStr.inserePosicao("Walber", 1);
+		listaEncadeadaStr.imprimeLista();
+
+		listaEncadeadaStr.inserePosicao("Migué", 2);
+		listaEncadeadaStr.imprimeLista();
+
+		listaEncadeadaStr.removeChar('i');
+		listaEncadeadaStr.imprimeLista();
+
+		/*
+		 * Lista encadeada INTEGER
+		 * */
+		TADListaEncadeada<Integer> listaEncadeadaInt = new ListaEncadeada<Integer>();
+		listaEncadeadaInt.insereOrdenado(3);
+		listaEncadeadaInt.imprimeLista();
+
+		listaEncadeadaInt.insereOrdenado(2);
+		listaEncadeadaInt.imprimeLista();
+
+		listaEncadeadaInt.insereOrdenado(4);
+		listaEncadeadaInt.imprimeLista();
+
+		listaEncadeadaInt.insereOrdenado(1);
+		listaEncadeadaInt.imprimeLista();
+
+		listaEncadeadaInt.insereOrdenado(5);
+		listaEncadeadaInt.imprimeLista();
+
+
+//		TADListaEncadeada<Integer> listaEncadeada = new ListaEncadeada<Integer>();
 //		listaEncadeada.inserePosicao(18, 3);
 //		listaEncadeada.imprimeLista();
 //
@@ -70,9 +97,7 @@ public class TesteListaEncadeada {
 //
 //		listaEncadeada.removePosicao(0);
 //		listaEncadeada.imprimeLista();
-		
-		listaEncadeada.removeChar('i');
-		listaEncadeada.imprimeLista();
 	}
-	
+
+
 }

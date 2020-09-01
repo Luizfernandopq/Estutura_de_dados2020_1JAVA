@@ -26,5 +26,7 @@ public interface TADListaEncadeada<T> {
 	public boolean listaVazia();
 	public void imprimeLista();
 	public void removeChar(Character c);
-	
+	public void insereOrdenado(T valor);
+
+
 }

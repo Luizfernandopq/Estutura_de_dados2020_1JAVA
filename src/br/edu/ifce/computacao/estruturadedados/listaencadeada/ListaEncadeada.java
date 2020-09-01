@@ -155,4 +155,23 @@ public class ListaEncadeada<T> implements TADListaEncadeada<T> {
 
 	}
 
+	@Override
+	public void insereOrdenado(T valor) {
+		if (listaVazia()){
+			insereInicio(valor);
+			return;
+		}
+		No<T> aux = cabeca;
+		int posicao = 0;
+		while (aux != null){
+			if(Integer.parseInt(aux.getValor().toString()) > Integer.parseInt(valor.toString())){
+				inserePosicao(valor, posicao);
+				return;
+			}
+			aux = aux.getProximo();
+			posicao++;
+		}
+		inserePosicao(valor,posicao);
+	}
+
 }
