@@ -69,7 +69,7 @@ public class ListaDuplaEncadeada<T> implements TADListaDuplaEncadeada<T> {
         }
         No<T> noAux = header;
         while (noAux.getPosterior() != null){
-            System.out.println(noAux.getValor() + " <=> ");
+            System.out.print(noAux.getValor() + " <=> ");
             noAux = noAux.getPosterior();
         }
         System.out.println(noAux.getValor() + " \n ");
