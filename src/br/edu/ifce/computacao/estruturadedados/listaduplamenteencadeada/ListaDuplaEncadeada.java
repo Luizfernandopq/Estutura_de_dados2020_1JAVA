@@ -23,15 +23,23 @@ public class ListaDuplaEncadeada<T> implements TADListaDuplaEncadeada<T> {
             System.out.println("Posição inválida para inserção: "+ posicao);
             return;
         }
-        No<T> noAntInsercao = header;
-
-        for (int i = 1; i < posicao; i++){
-            noAntInsercao = noAntInsercao.getPosterior();
+        if (posicao < tamanho/2){
+            No<T> noAntInsercao = header;
+            for (int i = 1; i < posicao; i++){
+                noAntInsercao = noAntInsercao.getPosterior();
+            }
+            No<T> novoNo = new No(noAntInsercao, valor, noAntInsercao.getPosterior());
+            noAntInsercao.getPosterior().setAnterior(novoNo);
+            noAntInsercao.setPosterior(novoNo);
+        }else {
+            No<T> noPosInsercao = trailer;
+            for (int i = tamanho; i >= posicao; i--){
+                noPosInsercao = noPosInsercao.getAnterior();
+            }
+            No<T> novoNo = new No(noPosInsercao.getAnterior(), valor, noPosInsercao);
+            noPosInsercao.setAnterior(novoNo);
+            novoNo.getAnterior().setPosterior(novoNo);
         }
-
-        No<T> novoNo = new No(noAntInsercao, valor, noAntInsercao.getPosterior());
-        noAntInsercao.getPosterior().setAnterior(novoNo);
-        noAntInsercao.setPosterior(novoNo);
         tamanho++;
     }
 
@@ -42,14 +50,25 @@ public class ListaDuplaEncadeada<T> implements TADListaDuplaEncadeada<T> {
             System.out.println("Posição inválida para remoção: "+ posicao);
             return null;
         }
-        No<T> noAntRemocao = header;
-        for (int i = 1; i < posicao; i++){
-            noAntRemocao = noAntRemocao.getPosterior();
-        }
-        No<T> noRemovido = noAntRemocao.getPosterior();
-        noAntRemocao.setPosterior(noRemovido.getPosterior());
-        noRemovido.getPosterior().setAnterior(noAntRemocao);
+        No<T> noRemovido;
+        if (posicao < tamanho/2){
+            No<T> noAntRemocao = header;
+            for (int i = 1; i < posicao; i++){
+                noAntRemocao = noAntRemocao.getPosterior();
+            }
+            noRemovido = noAntRemocao.getPosterior();
+            noAntRemocao.setPosterior(noRemovido.getPosterior());
+            noRemovido.getPosterior().setAnterior(noAntRemocao);
+        }else {
+            No<T> noPosRemocao = trailer;
+            for (int i = tamanho; i > posicao; i--){
+                noPosRemocao = noPosRemocao.getAnterior();
+            }
+            noRemovido = noPosRemocao.getAnterior();
+            noPosRemocao.setAnterior(noRemovido.getAnterior());
+            noRemovido.getAnterior().setPosterior(noPosRemocao);
 
+        }
         noRemovido.setAnterior(null);
         noRemovido.setPosterior(null);
         tamanho--;

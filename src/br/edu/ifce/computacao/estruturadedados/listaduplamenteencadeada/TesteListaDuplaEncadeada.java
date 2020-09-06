@@ -56,7 +56,7 @@ public class TesteListaDuplaEncadeada {
         listaDuplaEncadeada.removeValor(3);
         listaDuplaEncadeada.imprimeLista();
 
-        
+
 
 
 
