@@ -4,6 +4,10 @@ public class ArvoreBinariaBusca {
 
     private BTSNode raiz;
 
+    public BTSNode getRaiz() {
+        return raiz;
+    }
+
     public void insereNo(Integer valor, BTSNode noBase){
         if (raiz == null){
             raiz = new BTSNode(valor, null, null, null);
