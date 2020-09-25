@@ -3,13 +3,17 @@ package br.edu.ifce.computacao.estruturadedados.arvorebinaria;
 public class ArvoreBinaria<T> {
     private NoArvore<T> raiz;
 
+    public NoArvore<T> getRaiz() {
+        return raiz;
+    }
+
     public ArvoreBinaria(){
         raiz = null;
     }
-
     /*
     * Operações Principais
     * */
+
     public NoArvore<T> insereRaiz(T valor){
         if (raiz != null){
             System.out.println("Já tem raiz");
@@ -74,9 +78,5 @@ public class ArvoreBinaria<T> {
             imprimirPosfixado(noBase.getDir());
             System.out.print(noBase.getValor() + "\t");
         }
-    }
-
-    public NoArvore<T> getRaiz() {
-        return raiz;
     }
 }
