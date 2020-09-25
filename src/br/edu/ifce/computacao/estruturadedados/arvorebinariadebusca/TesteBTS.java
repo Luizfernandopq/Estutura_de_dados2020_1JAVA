@@ -21,5 +21,14 @@ public class TesteBTS {
         }else{
             System.out.println("Nó não encontrado");
         }
+
+        System.out.println("");
+        arvore.removeNo(15, arvore.getRaiz());
+        arvore.imprimirInterfixado(arvore.getRaiz());
+
+        System.out.println("");
+        arvore.removeNo(25, arvore.getRaiz());
+        arvore.imprimirInterfixado(arvore.getRaiz());
+
     }
 }
