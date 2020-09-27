@@ -31,6 +31,7 @@ public class ArvoreBinariaBusca {
             }
         }
     }
+    
     public BTSNode removeNo(Integer valor, BTSNode noBase){
         if (noBase == null){
             System.out.println("Elemento não encontrado");
