@@ -16,8 +16,28 @@ public class NoRubro {
         this.isRubro = isRubro;
     }
 
+
     public Integer getValor() {
         return valor;
+    }
+
+    public NoRubro getAvo(){
+        if (pai == null){
+            return null;
+        }
+        return pai.getPai();
+    }
+
+    public NoRubro getTio(){
+        NoRubro avo = getAvo();
+        if (avo == null){
+            return null;
+        }
+        if (avo.isHigher(pai)){
+            return avo.getDir();
+        }else{
+            return avo.getEsq();
+        }
     }
 
     public void setValor(Integer valor) {
@@ -54,5 +74,16 @@ public class NoRubro {
 
     public void setRubro(boolean rubro) {
         isRubro = rubro;
+    }
+
+    public String getCor(){
+        if (isRubro()){
+            return "Rubro";
+        }
+        return "Negro";
+    }
+
+    public boolean isHigher(NoRubro no){
+        return this.valor > no.getValor();
     }
 }
