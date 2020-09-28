@@ -1,6 +1,7 @@
 package br.edu.ifce.computacao.estruturadedados.arvorerubronegra;
 
 
+
 public class ArvoreRubroNegra {
     private NoRubro raiz;
 
@@ -99,7 +100,6 @@ public class ArvoreRubroNegra {
         }
     }
 
-
     public void insereNo(Integer valor) {
         insereNo(valor, getRaiz());
     }
@@ -129,7 +129,7 @@ public class ArvoreRubroNegra {
 
     private void rotacaoADireita(NoRubro noFilho) {
         NoRubro pai = noFilho.getPai();
-        System.out.println("rotação d: " + pai.getValor());
+        System.out.println("rotação à direita: " + pai.getValor());
         if (pai == raiz) {
             System.out.println("trocando a raiz");
             raiz = noFilho;
@@ -216,6 +216,7 @@ public class ArvoreRubroNegra {
             return null;
         }
     }
+
     public boolean isFolha(NoRubro no){
         return no.getEsq() == null && no.getDir() == null;
     }
@@ -236,4 +237,17 @@ public class ArvoreRubroNegra {
         return no;
     }
 
+    public int alturaNegra(){
+        return alturaNegra(raiz);
+    }
+    
+    public int alturaNegra(NoRubro noBase){
+        if (noBase == null || isFolha(noBase)){
+            return 1;            //como nós nil também são tratados como pretos, adicionamos eles na contagem
+        } else if(noBase.isRubro()){
+            return Math.max(alturaNegra(noBase.getEsq()),alturaNegra(noBase.getDir()));
+        } else{
+            return Math.max(alturaNegra(noBase.getEsq()),alturaNegra(noBase.getDir())) + 1;
+        }
+    }
 }

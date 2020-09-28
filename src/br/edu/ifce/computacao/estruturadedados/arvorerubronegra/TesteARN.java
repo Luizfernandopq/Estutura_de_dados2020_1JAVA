@@ -72,7 +72,7 @@ public class TesteARN {
         System.out.println("\n");
         arvoreRubroNegra2.insereNo(30);
         arvoreRubroNegra2.imprimirInterfixado();
-        System.out.println("");
+        System.out.println("\nAltura negra: " + arvoreRubroNegra2.alturaNegra()+ "\n\n");
 
         arvoreRubroNegra2.removeValor(30);
         arvoreRubroNegra2.imprimirInterfixado();
