@@ -8,7 +8,6 @@ public class ArvoreRubroNegra {
         return raiz;
     }
 
-
     public NoRubro insereNo(Integer valor, NoRubro noBase) {
         //Caso 1 (o nó a ser inserido é o raiz.Portanto, será da cor preta)
         if (raiz == null) {
@@ -151,7 +150,7 @@ public class ArvoreRubroNegra {
         pai.setPai(noFilho);
     }
 
-    public NoRubro pesquisaNo(Integer valor, NoRubro noBase) {
+    public NoRubro pesquisaValor(Integer valor, NoRubro noBase) {
         if (noBase == null) {
             return null;
         }
@@ -159,14 +158,14 @@ public class ArvoreRubroNegra {
             return noBase;
         }
         if (valor < noBase.getValor()) {
-            return pesquisaNo(valor, noBase.getEsq());
+            return pesquisaValor(valor, noBase.getEsq());
         } else {
-            return pesquisaNo(valor, noBase.getDir());
+            return pesquisaValor(valor, noBase.getDir());
         }
     }
 
-    public NoRubro pesquisaNo(Integer valor) {
-        return pesquisaNo(valor, getRaiz());
+    public NoRubro pesquisaValor(Integer valor) {
+        return pesquisaValor(valor, getRaiz());
     }
 
     public void imprimirInterfixado() {
@@ -182,5 +181,59 @@ public class ArvoreRubroNegra {
         }
     }
 
+    public NoRubro removeValor(Integer valor){
+        return removeValor(valor, raiz);
+    }
+
+    public NoRubro removeValor(Integer valor, NoRubro noBase){
+        NoRubro noRemovido = pesquisaValor(valor,noBase);
+        if (noRemovido == null){
+            System.out.println("Elemento não encontrado");
+            return null;
+        }
+        if (noRemovido.getValor() == valor){
+            if (isFolha(noRemovido)){
+                return ejetaNoFolha(noRemovido);
+            } else {
+                NoRubro noSucessor;
+                if(noRemovido.getDir() != null){
+                    noSucessor = noRemovido.getDir();
+                    while (noSucessor.getEsq() != null){
+                        noSucessor = noSucessor.getEsq();
+                    }
+                }else {
+                    noSucessor = noRemovido.getEsq();
+                    while (noSucessor.getDir() != null){
+                        noSucessor = noSucessor.getDir();
+                    }
+                }
+                noRemovido.setValor(noSucessor.getValor());
+                removeValor(noSucessor.getValor(), noSucessor);
+                return noRemovido;
+            }
+        }else{
+            System.out.println("Erro");
+            return null;
+        }
+    }
+    public boolean isFolha(NoRubro no){
+        return no.getEsq() == null && no.getDir() == null;
+    }
+
+    public NoRubro ejetaNoFolha(NoRubro no){
+        Integer valor = no.getValor();
+        NoRubro noPai = no.getPai();
+        if (noPai.getEsq() != null && noPai.getEsq().getValor() == valor){
+            noPai.setEsq(null);
+        }
+        if (noPai.getDir() != null && noPai.getDir().getValor() == valor){
+            noPai.setDir(null);
+        }
+        no.setPai(null);
+        if (no == raiz){
+            raiz = null;
+        }
+        return no;
+    }
 
 }

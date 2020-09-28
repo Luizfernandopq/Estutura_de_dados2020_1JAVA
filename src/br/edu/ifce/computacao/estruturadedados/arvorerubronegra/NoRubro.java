@@ -40,6 +40,17 @@ public class NoRubro {
         }
     }
 
+    public NoRubro getIrmao(){
+        if (this.pai == null){
+            return null;
+        }
+        if (isHigher(pai)){
+            return pai.esq;
+        }else{
+            return pai.dir;
+        }
+    }
+
     public void setValor(Integer valor) {
         this.valor = valor;
     }

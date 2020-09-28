@@ -3,6 +3,7 @@ package br.edu.ifce.computacao.estruturadedados.arvorerubronegra;
 public class TesteARN {
     public static void main(String[] args) {
         teste2();
+
     }
 
     public static void teste1() {
@@ -72,5 +73,16 @@ public class TesteARN {
         arvoreRubroNegra2.insereNo(30);
         arvoreRubroNegra2.imprimirInterfixado();
         System.out.println("");
+
+        arvoreRubroNegra2.removeValor(30);
+        arvoreRubroNegra2.imprimirInterfixado();
+        System.out.println("");
+        arvoreRubroNegra2.removeValor(40);
+        arvoreRubroNegra2.imprimirInterfixado();
+        System.out.println("");
+        arvoreRubroNegra2.removeValor(70);
+        arvoreRubroNegra2.imprimirInterfixado();
+        System.out.println("");
+
     }
 }

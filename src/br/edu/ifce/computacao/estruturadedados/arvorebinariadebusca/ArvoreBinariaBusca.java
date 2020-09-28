@@ -74,6 +74,9 @@ public class ArvoreBinariaBusca {
             noPai.setDir(null);
         }
         no.setPai(null);
+        if (no == raiz){
+            raiz = null;
+        }
         return no;
     }
 
