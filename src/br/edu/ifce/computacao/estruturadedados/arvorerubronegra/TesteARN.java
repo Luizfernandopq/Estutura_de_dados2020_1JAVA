@@ -74,15 +74,16 @@ public class TesteARN {
         arvoreRubroNegra2.imprimirInterfixado();
         System.out.println("\nAltura negra: " + arvoreRubroNegra2.alturaNegra()+ "\n\n");
 
-        arvoreRubroNegra2.removeValor(30);
-        arvoreRubroNegra2.imprimirInterfixado();
-        System.out.println("");
-        arvoreRubroNegra2.removeValor(40);
-        arvoreRubroNegra2.imprimirInterfixado();
-        System.out.println("");
-        arvoreRubroNegra2.removeValor(70);
-        arvoreRubroNegra2.imprimirInterfixado();
-        System.out.println("");
+        arvoreRubroNegra2.imprimeGalho();
 
+//        arvoreRubroNegra2.removeValor(30);
+//        arvoreRubroNegra2.imprimirInterfixado();
+//        System.out.println("");
+//        arvoreRubroNegra2.removeValor(40);
+//        arvoreRubroNegra2.imprimirInterfixado();
+//        System.out.println("");
+//        arvoreRubroNegra2.removeValor(70);
+//        arvoreRubroNegra2.imprimirInterfixado();
+//        System.out.println("");
     }
 }
