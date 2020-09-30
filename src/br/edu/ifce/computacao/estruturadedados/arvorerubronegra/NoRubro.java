@@ -1,6 +1,7 @@
 package br.edu.ifce.computacao.estruturadedados.arvorerubronegra;
 
 
+
 public class NoRubro {
     private Integer valor;
     private NoRubro pai;
@@ -41,14 +42,14 @@ public class NoRubro {
     }
 
     public NoRubro getIrmao(){
-        if (this.pai == null){
+        NoRubro pai = this.getPai();
+        if (pai == null){
             return null;
         }
-        if (isHigher(pai)){
-            return pai.esq;
-        }else{
-            return pai.dir;
+        if (pai.isHigher(this)){
+            return pai.getDir();
         }
+        return pai.getEsq();
     }
 
     public void setValor(Integer valor) {

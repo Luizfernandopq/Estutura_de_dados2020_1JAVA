@@ -93,7 +93,7 @@ public class ArvoreRubroNegra {
     private void fixCaso3(NoRubro n) {
         // pegando o tio do nó
         NoRubro tio = n.getTio();
-        //checando se o tio é nulo e vermelho
+        //checando se o tio é não nulo e vermelho
         if (tio != null && tio.isRubro()) {
             NoRubro pai = n.getPai();
             pai.setRubro(false);        // podemos pintar o pai e o tio de preto. Assim, em cada lado
@@ -376,12 +376,30 @@ public class ArvoreRubroNegra {
                     }
                 }
                 noRemovido.setValor(noSucessor.getValor());
-                removeValor(noSucessor.getValor(), noSucessor);
+                if (!noRemovido.isRubro() && !noSucessor.isRubro() && isFolha(noSucessor)){
+                    fixRemocao(noSucessor);
+                }
+                removeValor(noSucessor.getValor(),noSucessor);
                 return noRemovido;
             }
         }else{
             System.out.println("Erro");
             return null;
+        }
+    }
+
+    private void fixRemocao(NoRubro noSucessor) {
+        NoRubro pai = noSucessor.getPai();
+        NoRubro irmao = noSucessor.getIrmao();
+        System.out.println("Fix");
+        if(isFolha(noSucessor) && irmao != null && !irmao.isRubro() && isFolha(irmao) && pai.isRubro()) {
+            irmao.setRubro(true);
+            pai.setRubro(false);
+        } else if(!pai.isRubro() && !irmao.isRubro() && isFolha(irmao)){
+            irmao.setRubro(true);
+        } else if (!pai.isRubro() && !irmao.isRubro() && !isFolha(irmao)){
+            pai.setRubro(true);
+            rotacaoADireita(irmao);
         }
     }
 
@@ -410,7 +428,7 @@ public class ArvoreRubroNegra {
     }
 
     public int alturaNegra(NoRubro noBase){
-        if (noBase == null || isFolha(noBase)){
+        if (noBase == null){
             return 1;            //como nós nil também são tratados como pretos, adicionamos eles na contagem
         } else if(noBase.isRubro()){
             return Math.max(alturaNegra(noBase.getEsq()),alturaNegra(noBase.getDir()));
@@ -460,5 +478,21 @@ public class ArvoreRubroNegra {
         }
     }
 
+    // esta função checa nó por nó e verifica se o caminho esquerdo tem o mesmo número de nós preto
+    // que o caminho direito de forma recursiva caminhando em direção às folhas
+    public boolean isRubroNegra(){
+        return isRubroNegra(raiz);
+    }
+
+    public boolean isRubroNegra(NoRubro noRubro){
+        if (noRubro != null || isFolha(noRubro)){
+            return true;
+        }
+        System.out.println("esq "+ alturaNegra(noRubro.getEsq()));
+        System.out.println("dir "+ alturaNegra(noRubro.getDir()));
+        return alturaNegra(noRubro.getEsq()) == alturaNegra(noRubro.getDir())
+                && isRubroNegra(noRubro.getEsq())
+                && isRubroNegra(noRubro.getDir());
+    }
 
 }
